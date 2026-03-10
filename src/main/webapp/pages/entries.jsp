@@ -1,46 +1,51 @@
-<%@ page import="dao.LearningEntryDAO, model.LearningEntry, java.util.List" %>
-<%
-String topicIdStr = request.getParameter("topicId");
-int topicId = 0; // Default value
+<%@ page import="dao.LearningEntryDAO, model.LearningEntry, java.util.List, java.util.ArrayList" %>
 
-if (topicIdStr != null && !topicIdStr.isEmpty()) {
-    topicId = Integer.parseInt(topicIdStr);
-}
-    LearningEntryDAO dao = new LearningEntryDAO();
-    
-    // Check if user submitted a new note
-    String note = request.getParameter("note");
-    if (note != null && !note.isEmpty()) {
-        dao.save(note, topicId);
-        response.sendRedirect("entries.jsp?topicId=" + topicId);
-    }
-    
-    // Get all entries for this topic
-    List<LearningEntry> entries = dao.findEntryByTopicId(topicId);
+<%
+	List<LearningEntry> dummyEntries = new ArrayList<>();
+	
+	dummyEntries.add(new LearningEntry(1, "Learned how to use JSP"));
+	dummyEntries.add(new LearningEntry(2, "CSS and Responsive Design"));
+	dummyEntries.add(new LearningEntry(3, "SQL Database Connectivity"));
+	dummyEntries.add(new LearningEntry(4, "Learned how to use JSP"));
+	dummyEntries.add(new LearningEntry(5, "CSS and Responsive Design"));
+	dummyEntries.add(new LearningEntry(6, "SQL Database Connectivity"));
+	dummyEntries.add(new LearningEntry(7, "Learned how to use JSP"));
+	dummyEntries.add(new LearningEntry(8, "CSS and Responsive Design"));
+	dummyEntries.add(new LearningEntry(9, "SQL Database Connectivity"));
 %>
 
 <html>
-<head>
-    <style>
-        .card { border: 1px solid #ccc; padding: 15px; margin: 10px; width: 200px; display: inline-block; vertical-align: top; border-radius: 10px; box-shadow: 2px 2px 5px #eee; }
-        form { margin-bottom: 30px; }
-    </style>
-</head>
-<body>
-	<%@ include file="header.jsp" %>
-    <h1>Topic #<%= topicId %></h1>
-
-    <form method="POST">
-        <input type="text" name="note" placeholder="Write a note...">
-        <button type="submit">Add Entry</button>
-    </form>
-
-    <div>
-        <% for (LearningEntry e : entries) { %>
-            <div class="card">
-                <p><%= e.getNote() %></p>
-            </div>
-        <% } %>
-    </div>
-</body>
+	<head>
+	    <link rel="stylesheet" href="../css/style.css">
+	    <link rel="stylesheet" href="../css/card.css">
+	</head>
+	<body>
+		<div class="app-container">	
+		<%@ include file="header.jsp" %>
+		
+		<div class="scrollable-content">
+            <main class="content-wrapper">
+                <h1 class="topic-title">Topic Details</h1>
+		
+		        <form method="POST" class="center-form">
+		            <input type="text" name="note" placeholder="Write a note...">
+		            <button type="submit">Add Entry</button>
+		        </form>
+		
+				<div class="card-list">
+                    <% for (LearningEntry e : dummyEntries) { %>
+				    	<div class="learning-card">
+				        	<div class="card-content">
+				            	<p><%= e.getNote() %></p>
+				                <small>Entry ID: <%= e.getId() %></small>
+				            </div>
+				        </div>
+				    <% } %>
+				</div>
+	    	</main>
+	    </div>
+	    
+	    <%@ include file="footer.jsp"%>
+	    </div>
+	</body>
 </html>

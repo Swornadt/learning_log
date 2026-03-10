@@ -1,0 +1,85 @@
+.centered-layout {
+    background-color: #e9ecef;
+    display: flex;
+    justify-content: center;
+    padding-top: 40px;
+    padding-bottom: 40px;
+}
+
+.content-wrapper {
+    background-color: #fdfdfd;
+    max-width: 850px; 
+    padding: 60px;
+    border-radius: 4px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.topic-title {
+    margin-bottom: 30px;
+    color: #202124;
+}
+
+.center-form {
+    border-bottom: 2px solid #333;
+    display: flex;
+    width: 80%;
+    align-items: center;
+    padding-bottom: 10px;
+    margin-bottom: 30px;
+}
+
+.center-form input {
+    border: none;
+    font-size: 1.2rem;
+    font-family: 'Georgia', serif;
+    outline: none;
+    flex: 1;
+    width: 100%;
+}
+
+.center-form button {
+    background: #333;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-left: 10px;
+}
+
+.card-list {
+    width: 100%;
+    flex: 1;
+    overflow-y: auto;
+    padding-right: 10px;
+    scrollbar-width: none;
+}
+
+.learning-card {
+    background: transparent;
+    border: none;
+    padding: 15px 10px;
+    transition: all 0.2s ease;
+    border-bottom: 1px solid #ccc;
+    cursor: pointer;
+}
+
+.learning-card:hover {
+    background-color: #efefef;
+    transform: none;
+    padding-left: 15px;
+}
+
+.card-content p {
+    margin: 0;
+    font-size: 1.1rem;
+    color: #3c4043;
+}
+
+.card-content small {
+    display: block;
+    margin-top: 10px;
+    color: #70757a;
+}

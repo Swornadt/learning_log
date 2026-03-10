@@ -1,0 +1,90 @@
+.classroom-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+    width: 100%;
+}
+
+.topic-card {
+    background: #fff;
+    border: 1px solid #dadce0;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    transition: box-shadow 0.3s;
+}
+
+.topic-card:hover {
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.topic-header {
+    background: #4285f4;
+    color: white;
+    padding: 20px;
+}
+
+.topic-header h2 {
+    margin: 0;
+    font-size: 1.2rem;
+}
+
+.topic-body {
+    padding: 20px;
+    flex-grow: 1;
+    color: #5f6368;
+}
+
+.topic-footer {
+    padding: 10px 20px;
+    border-top: 1px solid #dadce0;
+    background: #f8f9fa;
+}
+
+.topic-footer a {
+    text-decoration: none;
+    color: #4285f4;
+    font-weight: 500;
+}
+
+.add-topic-card {
+    border: 2px dashed #4285f4;
+    background: #f8f9fa;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 180px;
+}
+
+#addBtn {
+    cursor: pointer;
+    text-align: center;
+    color: #4285f4;
+}
+
+.add-topic-card input {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.add-button {
+    text-decoration: none;
+    color: #4285f4;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.plus-icon {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.add-topic-card:hover {
+    background: #eef5ff;
+}
