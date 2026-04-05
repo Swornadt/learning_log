@@ -1,11 +1,12 @@
 package views;
 
-import controller.TopicController;
 import java.util.Scanner;
+
+import service.TopicService;
 
 public class TopicsUI {
     public static void main(String[] args) {
-        TopicController controller = new TopicController();
+        TopicService controller = new TopicService();
         Scanner scanner = new Scanner(System.in);
         boolean running = true;
 

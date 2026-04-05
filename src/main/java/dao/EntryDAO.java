@@ -11,11 +11,11 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-import model.LearningEntry;
+import model.EntryModel;
 
 import com.utils.DBconfig;
 
-public class LearningEntryDAO {
+public class EntryDAO {
 	
 	public void save(String note, int topicID) {
 		String sql = "INSERT INTO entries (topic_id, note, created_at, updated_at) VALUES (?,?,?,?)";
@@ -36,8 +36,8 @@ public class LearningEntryDAO {
 	}
 	
 	
-	public List<LearningEntry> findEntryByTopicId(int topicId) {
-        List<LearningEntry> entries = new ArrayList<>();
+	public List<EntryModel> findEntryByTopicId(int topicId) {
+        List<EntryModel> entries = new ArrayList<>();
         String sql = "SELECT * FROM entries WHERE topic_id = ?";
         
         try (Connection conn = DBconfig.getConnection();
@@ -47,7 +47,7 @@ public class LearningEntryDAO {
             ResultSet rs = pstmt.executeQuery();
             
             while (rs.next()) {
-                LearningEntry entry = new LearningEntry(rs.getInt("id"), rs.getString("note"));
+                EntryModel entry = new EntryModel(rs.getInt("id"), rs.getString("note"));
                 entries.add(entry);
             }
         } catch (SQLException e) {
@@ -57,8 +57,8 @@ public class LearningEntryDAO {
     }
 	
 	
-	public List<LearningEntry> findEntryByTopicName(String name) {
-        List<LearningEntry> entries = new ArrayList<>();
+	public List<EntryModel> findEntryByTopicName(String name) {
+        List<EntryModel> entries = new ArrayList<>();
         String sql = "SELECT e.* FROM entries e " + 
         			"JOIN topics t ON e.topic_id = t.id "+
         			"WHERE UPPER(t.name) = UPPER(?)";
@@ -70,7 +70,7 @@ public class LearningEntryDAO {
             ResultSet rs = pstmt.executeQuery();
             
             while (rs.next()) {
-                LearningEntry entry = new LearningEntry(rs.getInt("id"), rs.getString("note"));
+                EntryModel entry = new EntryModel(rs.getInt("id"), rs.getString("note"));
                 entries.add(entry);
             }
         } catch (SQLException e) {

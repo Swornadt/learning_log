@@ -18,12 +18,12 @@
 			method="post">
 			<div class="row">
 				<div class="col">
-					<label for="firstName">First Name:</label> <input type="text"
-						id="firstName" name="firstName" required>
+					<label for="first_name">First Name:</label> <input type="text"
+						id="firstName" name="first_name" required>
 				</div>
 				<div class="col">
-					<label for="lastName">Last Name:</label> <input type="text"
-						id="lastName" name="lastName" required>
+					<label for="last_name">Last Name:</label> <input type="text"
+						id="lastName" name="last_name" required>
 				</div>
 			</div>
 			<div class="row">
@@ -32,8 +32,8 @@
 						id="username" name="username" required>
 				</div>
 				<div class="col">
-					<label for="birthday">Date of Birth:</label> <input type="date"
-						id="birthday" name="dob" required>
+					<label for="dob">Date of Birth:</label> <input type="date"
+						id="dob" name="dob" required>
 				</div>
 			</div>
 			<div class="row">
@@ -51,15 +51,15 @@
 			</div>
 			<div class="row">
 				<div class="col">
-					<label for="phoneNumber">Phone Number:</label> <input type="tel"
-						id="phoneNumber" name="phoneNumber" required>
+					<label for="number">Phone Number:</label> <input type="tel"
+						id="number" name="number" required>
 				</div>
 				<div class="col">
-					<label for="subject">Subject:</label> <select id="subject"
-						name="subject" required>
-						<option value="computing">Computing</option>
-						<option value="multimedia">Multimedia</option>
-						<option value="networking">Networking</option>
+					<label for="program">Subject:</label> <select id="program"
+						name="program" required>
+						<option value="1">Computing</option>
+						<option value="2">Multimedia</option>
+						<option value="3">Networking</option>
 					</select>
 				</div>
 			</div>

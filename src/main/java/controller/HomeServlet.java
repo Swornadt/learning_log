@@ -11,14 +11,14 @@ import java.io.IOException;
  * Servlet implementation class Home
  * Author: Sworna D. Tuladhar
  */
-@WebServlet(asyncSupported = true, urlPatterns = { "/Home" })
-public class HomeController extends HttpServlet {
+@WebServlet(asyncSupported = true, urlPatterns = { "/home" })
+public class HomeServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public HomeController() {
+    public HomeServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -28,7 +28,7 @@ public class HomeController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		request.getRequestDispatcher("/WEB-INF/pages/topics.jsp").forward(request, response);
 	}
 
 	/**

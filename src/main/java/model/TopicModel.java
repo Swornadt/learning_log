@@ -1,18 +1,34 @@
 package model;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 
-public class LearningEntry {
+public class TopicModel {
 	private int id;
-	private String note;
 	private LocalDateTime createdAt;
 	private LocalDateTime updatedAt;
+	private String name;
 	
-	public LearningEntry(int id, String note) {
+	private ArrayList<EntryModel> entries = new ArrayList<>();
+	
+	
+	// Constructor
+	public TopicModel (int id, String name) {
 		this.id = id;
-		this.note = note;
+		this.name = name;
 		this.createdAt = LocalDateTime.now();
 		this.updatedAt = LocalDateTime.now();
+	}
+	
+	
+	// Adding Learning Entries into the ArrayList
+	public void addEntry(EntryModel entry) {
+		this.entries.add(entry);
+		this.updatedAt = LocalDateTime.now();
+	}
+	
+	public ArrayList<EntryModel> getEntries() {
+		return this.entries;
 	}
 	
 	
@@ -23,12 +39,12 @@ public class LearningEntry {
 	public void setId(int id) {
 		this.id = id;
 	}
-		
-	public String getNote() {
-		return this.note;
+	
+	public String getName() {
+		return this.name;
 	}
-	public void setNote(String note) {
-		this.note = note;
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public LocalDateTime getCreatedAt() {
@@ -37,7 +53,7 @@ public class LearningEntry {
 	public void setCreatedAt(LocalDateTime createdAt) {
 		this.createdAt = createdAt;
 	}
-		
+	
 	public LocalDateTime getUpdatedAt() {
 		return this.updatedAt;
 	}

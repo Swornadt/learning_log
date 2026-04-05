@@ -1,5 +1,5 @@
-<link rel="stylesheet" href="../css/style.css">
-<link rel="stylesheet" href="../css/header.css">
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/style.css">
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/header.css">
 <nav class="navbar">
 	<div class="navbar-content">
 	    <div class="brand">LearningLogs</div>

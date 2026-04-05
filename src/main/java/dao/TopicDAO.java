@@ -10,12 +10,12 @@ import java.util.List;
 
 import com.utils.DBconfig;
 
-import model.Topic;
+import model.TopicModel;
 
 public class TopicDAO {
 	
-	public void save(Topic topic) {
-		String sql = "INSERT INTO topics (name, created_at, updated_at) VALUES (?, ?, ?)";
+	public void save(TopicModel topic) {
+		String sql = "INSERT INTO topics (name, createdAt, updatedAt) VALUES (?, ?, ?)";
 		
 		try (Connection conn = DBconfig.getConnection();
 				PreparedStatement pre = conn.prepareStatement(sql)) {
@@ -30,8 +30,8 @@ public class TopicDAO {
 	}
 	
 	
-	public List<Topic> findAll() {
-		List<Topic> topics = new ArrayList<>();
+	public List<TopicModel> findAll() {
+		List<TopicModel> topics = new ArrayList<>();
 		String sql = "SELECT * FROM topics";
 		
 		try (Connection conn = DBconfig.getConnection();
@@ -39,9 +39,9 @@ public class TopicDAO {
 				ResultSet rs = pre.executeQuery()) {
 			
 			while (rs.next()) {
-				Topic t = new Topic(rs.getInt("id"), rs.getString("name"));
-				t.setCreatedAt(rs.getTimestamp("created_at").toLocalDateTime());
-				t.setUpdatedAt(rs.getTimestamp("updated_at").toLocalDateTime());
+				TopicModel t = new TopicModel(rs.getInt("id"), rs.getString("name"));
+				t.setCreatedAt(rs.getTimestamp("createdAt").toLocalDateTime());
+				t.setUpdatedAt(rs.getTimestamp("updatedAt").toLocalDateTime());
 				topics.add(t);
 			}
 		} catch (SQLException e) {
@@ -51,8 +51,8 @@ public class TopicDAO {
 	}
 	
 	
-	public List<Topic> findTopicsByNames(List<String> names) {
-		List<Topic> topics = new ArrayList<>();
+	public List<TopicModel> findTopicsByNames(List<String> names) {
+		List<TopicModel> topics = new ArrayList<>();
 		
 		StringBuilder sql = new StringBuilder("SELECT * FROM topics WHERE name IN (");
 		for (int i = 0; i < names.size(); i++ ) {
@@ -69,7 +69,7 @@ public class TopicDAO {
 			
 			ResultSet rs = pre.executeQuery();
 			while(rs.next()) {
-				topics.add(new Topic(rs.getInt("id"), rs.getString("name")));
+				topics.add(new TopicModel(rs.getInt("id"), rs.getString("name")));
 			}
 			
 		} catch (SQLException e) {
