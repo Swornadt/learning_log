@@ -1,23 +1,11 @@
-<%@ page import="dao.EntryDAO,model.EntryModel,java.util.List,java.util.ArrayList" %>
-
-<%
-List<EntryModel> dummyEntries = new ArrayList<>();
-	
-	dummyEntries.add(new EntryModel(1, "Learned how to use JSP"));
-	dummyEntries.add(new EntryModel(2, "CSS and Responsive Design"));
-	dummyEntries.add(new EntryModel(3, "SQL Database Connectivity"));
-	dummyEntries.add(new EntryModel(4, "Learned how to use JSP"));
-	dummyEntries.add(new EntryModel(5, "CSS and Responsive Design"));
-	dummyEntries.add(new EntryModel(6, "SQL Database Connectivity"));
-	dummyEntries.add(new EntryModel(7, "Learned how to use JSP"));
-	dummyEntries.add(new EntryModel(8, "CSS and Responsive Design"));
-	dummyEntries.add(new EntryModel(9, "SQL Database Connectivity"));
-%>
+<%@ taglib prefix="c" uri="jakarta.tags.core" %>
+<%@ page import="model.EntryModel, java.util.List" %>
 
 <html>
 	<head>
 	    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
 	    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/card.css">
+		<title>Topic Entries</title>
 	</head>
 	<body>
 		<div class="app-container">	
@@ -27,23 +15,30 @@ List<EntryModel> dummyEntries = new ArrayList<>();
             <main class="content-wrapper">
                 <h1 class="topic-title">Topic Details</h1>
 		
-		        <form method="POST" class="center-form">
-		            <input type="text" name="note" placeholder="Write a note...">
-		            <button type="submit">Add Entry</button>
-		        </form>
+		        <form action="entries" method="POST" class="center-form">
+                    <input type="hidden" name="topicId" value="${currentTopicId}">
+                    
+                    <input type="text" name="note" placeholder="Write a note..." required>
+                    <button type="submit">Add Entry</button>
+                </form>
 		
 				<div class="card-list">
-                    <%
-                    for (EntryModel e : dummyEntries) {
-                    %>
-				    	<div class="learning-card">
-				        	<div class="card-content">
-				            	<p><%= e.getNote() %></p>
-				                <small>Entry ID: <%= e.getId() %></small>
-				            </div>
-				        </div>
-				    <% } %>
-				</div>
+                    <c:choose>
+                        <c:when test="${empty entryList}">
+                            <p class="no-data">No entries found for this topic. Start by adding one above!</p>
+                        </c:when>
+                        <c:otherwise>
+                            <c:forEach var="e" items="${entryList}">
+                                <div class="learning-card">
+                                    <div class="card-content">
+                                        <p><c:out value="${e.note}" /></p>
+                                        <small>Entry ID: ${e.id}</small>
+                                    </div>
+                                </div>
+                            </c:forEach>
+                        </c:otherwise>
+                    </c:choose>
+                </div>
 	    	</main>
 	    </div>
 	    

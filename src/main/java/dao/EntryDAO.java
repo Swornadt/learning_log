@@ -47,7 +47,7 @@ public class EntryDAO {
             ResultSet rs = pstmt.executeQuery();
             
             while (rs.next()) {
-                EntryModel entry = new EntryModel(rs.getInt("id"), rs.getString("note"));
+                EntryModel entry = new EntryModel(rs.getInt("entry_id"), rs.getString("note"));
                 entries.add(entry);
             }
         } catch (SQLException e) {

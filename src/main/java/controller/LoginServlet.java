@@ -18,35 +18,31 @@ import dao.LoginDAO;
 public class LoginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
     public LoginServlet() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		request.getRequestDispatcher("/WEB-INF/pages/login.jsp").forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String user = request.getParameter("username");
+		String username = request.getParameter("username");
 		String password = request.getParameter("password");
 		
 		// To check the credentials, using DAO.
 		LoginDAO dao = new LoginDAO();
 
 		try {
-			if (dao.checkUser(user, password)) {
+			if (dao.checkUser(username, password)) {
 				// start a session for the user
 				HttpSession session = request.getSession();
-				session.setAttribute("user", user);	
+				session.setAttribute("isLogin", true);
+				session.setAttribute("user", username);	
 				response.sendRedirect(request.getContextPath() + "/home");
 			} else {
-				System.out.println("Login Error: " + user);
-				request.setAttribute("errorMessage", "Invalid username or password");
+				System.out.println("Login Error: " + username);
+				request.setAttribute("errorMessage", "Password or username is invalid.");
 				request.getRequestDispatcher("WEB-INF/pages/login.jsp").forward(request, response);
 			}
 		} catch (Exception e) {
